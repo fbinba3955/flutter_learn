@@ -42,6 +42,9 @@ dev_dependencies:
   # 磁盘缓存
   # import 'package:localstorage/localstorage.dart';
   localstorage: ^1.0.0
+  # 网页展示
+  # import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
+  flutter_webview_plugin: ^0.3.0+2
 
 
 # For information on the generic Dart part of this file, see the
