@@ -1,10 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flu_learn/page_http_json.dart';
+import 'package:flu_learn/page_native_widget.dart';
 import 'package:flu_learn/page_statefulwidget.dart';
-import 'package:flutter/material.dart';
 import 'package:flu_learn/page_waterfall_grid.dart';
+import 'package:flutter/material.dart';
+
 import 'home_func_item_list.dart';
-import 'package:fluro/fluro.dart';
 
 class HomeFuncItems extends StatelessWidget {
   @override
@@ -15,32 +16,32 @@ class HomeFuncItems extends StatelessWidget {
     List<HomeFuncItemList> list = new List();
     HomeFuncItemList itemBean;
 
-    //汽车票
+    //瀑布流
     itemBean = new HomeFuncItemList();
     itemBean.id = '1';
     itemBean.content = '瀑布流';
     itemBean.icon = Icons.view_comfy;
     list.add(itemBean);
 
-    //飞机票
+    //statefulWidget
     itemBean = new HomeFuncItemList();
     itemBean.id = '2';
     itemBean.content = 'statefulWidget';
     itemBean.icon = Icons.widgets;
     list.add(itemBean);
 
-    //火车票
+    //http&json
     itemBean = new HomeFuncItemList();
     itemBean.id = '3';
-    itemBean.content = 'http';
-    itemBean.icon = Icons.link;
+    itemBean.content = 'http与json';
+    itemBean.icon = Icons.http;
     list.add(itemBean);
 
-    //个人中心
+    //native控件
     itemBean = new HomeFuncItemList();
     itemBean.id = '4';
-    itemBean.content = '个人中心';
-    itemBean.icon = Icons.account_circle;
+    itemBean.content = 'Android native';
+    itemBean.icon = Icons.adb;
     list.add(itemBean);
 
 //    for (int i = 5; i < 15; i++) {
@@ -86,12 +87,19 @@ class HomeFuncItems extends StatelessWidget {
       );
     }
 
+    void _gotoNative(BuildContext context, String content) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => NativeWidget(),
+        ),
+      );
+    }
+
     /**
      * 创建一个item
      */
     Widget _buildItem(BuildContext context, HomeFuncItemList bean) {
-      final router = Router();
-
       return Material(
         child: InkWell(
           onTap: () {
@@ -101,6 +109,8 @@ class HomeFuncItems extends StatelessWidget {
               _gotoStateful(context, bean.content);
             } else if (bean.id == '3') {
               _gotoHttpJson(context, bean.content);
+            } else if (bean.id == '4') {
+              _gotoNative(context, bean.content);
             }
           },
           child: Row(
@@ -137,12 +147,14 @@ class HomeFuncItems extends StatelessWidget {
         slivers: <Widget>[
           SliverAppBar(
             pinned: true, ////上划后是否让bar保持在顶部
-            expandedHeight: 150.0,
+            expandedHeight: 200.0,
             flexibleSpace: FlexibleSpaceBar(
-              title: Text('畅途汽车票'),
+              title: Text(
+                'flutter学习',
+              ),
               background: CachedNetworkImage(
                 imageUrl:
-                    'http://image.881023.top/uploads/big/4ab4ee1bba24e3f0e7e4b9158534b22d.jpg',
+                    'http://image.881023.top/uploads/big/6a0cfc987d6bdb6489bf685399e1b024.jpg',
                 placeholder: CircularProgressIndicator(),
                 errorWidget: Icon(Icons.error),
                 fit: BoxFit.cover,
